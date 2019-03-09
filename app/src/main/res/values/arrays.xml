@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="welcome_text">
+        <item>Welcome</item>
+        <item>to</item>
+        <item>iWebs Push</item>
+    </string-array>
+</resources>

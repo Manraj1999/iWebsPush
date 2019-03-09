@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">iWebs Push</string>
+
+    <string name="home_welcome">Welcome to iWebs Push,</string>
+    <string name="home_btn">Get Started</string>
+    <string name="home_sign_in">sign in to continue</string>
+</resources>
