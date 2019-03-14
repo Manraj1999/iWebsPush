@@ -1,5 +1,6 @@
 package my.com.iwebs.iwebspush;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
                         Toast.makeText(getApplicationContext(), "Name: " + user.getName() + "\nEmail: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+
+                        Intent goToHome = new Intent(getBaseContext(), HomeActivity.class);
+                        startActivity(goToHome);
                     } else {
                         Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }

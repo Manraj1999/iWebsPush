@@ -9,7 +9,7 @@ import my.com.iwebs.iwebspush.MainActivity;
 public class SharedPrefManager {
 
     //the constants
-    private static final String SHARED_PREF_NAME = "simplifiedcodingsharedpref";
+    private static final String SHARED_PREF_NAME = "iwebs-push";
     private static final String KEY_NAME = "keyname";
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_ID = "keyid";
