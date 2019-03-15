@@ -1,20 +1,25 @@
 package my.com.iwebs.iwebspush;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import my.com.iwebs.iwebspush.classes.SharedPrefManager;
 import my.com.iwebs.iwebspush.classes.User;
 
@@ -27,21 +32,34 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+
+        Button drawer_menu = (Button) findViewById(R.id.notifications);
+        drawer_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.END);
+            }
+        });
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
-
         View headerView = navigationView.getHeaderView(0);
+
+        Transformation transformation = new RoundedTransformationBuilder()
+                .borderColor(Color.parseColor("#1d1d1d"))
+                .borderWidthDp(3)
+                .cornerRadiusDp(50)
+                .oval(false)
+                .build();
+
+        ImageView logo = findViewById(R.id.logo_main);
+        Picasso.get().load(user.getLogoURL()).resize(250, 250).transform(transformation).into(logo);
+
         nav_name = headerView.findViewById(R.id.nav_name);
         nav_name.setText(user.getName());
     }

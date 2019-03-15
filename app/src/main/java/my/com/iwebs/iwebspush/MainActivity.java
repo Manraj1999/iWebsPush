@@ -84,11 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject userJson = obj.getJSONObject("user");
 
-                        User user = new User(userJson.getInt("id"), userJson.getString("name"), userJson.getString("email"));
+                        User user = new User(userJson.getInt("id"),
+                                userJson.getString("name"),
+                                userJson.getString("email"),
+                                userJson.getString("domain"),
+                                userJson.getString("secret_key"),
+                                userJson.getString("logo_url"));
 
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                        Toast.makeText(getApplicationContext(), "Name: " + user.getName() + "\nEmail: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Name: " + user.getName() + "\nEmail: " + user.getEmail() + "\nDomain: " + user.getDomain() + "\nSecret Key: " + user.getSecretKey() + "\nLogo URL: " + user.getLogoURL(), Toast.LENGTH_SHORT).show();
 
                         Intent goToHome = new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(goToHome);
